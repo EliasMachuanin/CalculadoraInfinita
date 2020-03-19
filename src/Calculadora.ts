@@ -43,6 +43,9 @@ export class Calculador {
         }
         return i;
     }
-}
 
+}
 export default Calculador;
+
+
+
