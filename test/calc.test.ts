@@ -19,6 +19,14 @@ describe('calculate', function() {
   });
 
   describe('calculate', function() {
+    it('Restador negativo', function() {
+      const c = new Calculador();
+      let result = c.resta(2, 5);
+      expect(result).equal(-3);
+    });
+  });
+
+  describe('calculate', function() {
     it('Multiplicador', function() {
       const c = new Calculador();
       let result = c.producto(5, 2);
@@ -27,10 +35,34 @@ describe('calculate', function() {
   });
 
   describe('calculate', function() {
+    it('Multiplicador por 0', function() {
+      const c = new Calculador();
+      let result = c.producto(0, 2);
+      expect(result).equal(0);
+    });
+  });
+
+  describe('calculate', function() {
     it('Divisor', function() {
       const c = new Calculador();
       let result = c.division(451, 3);
       expect(result).equal(151);
+    });
+  });
+
+  describe('calculate', function() {
+    it('Divisor por 0', function() {
+      const c = new Calculador();
+      let result = c.division(451, 0);
+      expect(result).equal(null);
+    });
+  });
+
+  describe('calculate', function() {
+    it('Divisor con a < b', function() {
+      const c = new Calculador();
+      let result = c.division(1, 20);
+      expect(result).equal(0);
     });
   });
 
@@ -70,4 +102,12 @@ describe('calculate', function() {
     });
   });
 
+/*
+  describe('CalculateString', function() {
+    it('SumaString', function() {
+      const r = new Calculador();
+      expect(r.sumarStrings("15261775","998563")).equal("16260338");
+    });
+  });
+*/
   
