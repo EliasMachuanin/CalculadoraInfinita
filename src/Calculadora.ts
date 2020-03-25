@@ -33,15 +33,14 @@ export class Calculador {
     //Siempre redondea para arriba.
     division(a : number, b : number):number{
         let i=0;
-        if(b==0) {
-            i=null;
+        if(b==0){
+            i = null;
           }
         else if(b==1){
-            i=a;
+            i = a;
         }
         else if(a<b){
             i = 0;
-
         }
         else{
             while(a>0){
