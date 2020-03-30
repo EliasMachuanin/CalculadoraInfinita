@@ -43,7 +43,7 @@ export class Calculador {
             i = 0;
         }
         else{
-            while(a>0){
+            while(a>b){
                 a = this.resta(a, b);
                 i = this.sumar(i, 1);
             }

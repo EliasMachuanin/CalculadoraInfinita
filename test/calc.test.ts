@@ -46,7 +46,7 @@ describe('calculate', function() {
     it('Divisor', function() {
       const c = new Calculador();
       let result = c.division(451, 3);
-      expect(result).equal(151);
+      expect(result).equal(150);
     });
   });
 
