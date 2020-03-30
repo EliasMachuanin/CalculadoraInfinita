@@ -30,7 +30,7 @@ export class Calculador {
         return i;
     }
 
-    //Siempre redondea para arriba.
+    //Siempre redondea para abajo.
     division(a : number, b : number):number{
         let i=0;
         if(b==0){
