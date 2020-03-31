@@ -1,7 +1,7 @@
 export class Calculador {
     constructor(){
     }
-    sumar(a : number, b : number):number{
+    suma(a : number, b : number):number{
         let c=0;
         
         for(a=a;a>0;a--){
@@ -25,7 +25,7 @@ export class Calculador {
         let c=0, i=0;
         
         for(c=0;c<b;c++){
-            i = this.sumar(a, a);
+            i = this.suma(a, a);
         }
         return i;
     }
@@ -45,53 +45,75 @@ export class Calculador {
         else{
             while(a>b){
                 a = this.resta(a, b);
-                i = this.sumar(i, 1);
+                i = this.suma(i, 1);
             }
         }
         return i;
     }
 
-/*    sumarStrings(a : string, b : string){
-        let tamA= a.length;
-        let tamB = b.length;
-        let aux1 = "";
-        let aux2= "";
-
-        if(tamA<tamB){
-            for(let i=0;i<tamB-tamA;i++){
-                aux1.concat("0");
-            }
-            aux1.concat(a);
-            aux2 = b;
-
-        }
-        else if(tamB<tamA){
-            for(let i=0;i<tamA-tamB;i++){
-                aux2.concat("0");
-            }
-            aux2.concat(b);
-            aux1 = a;
-        }
-        console.log(aux1);
-        console.log(aux2);
-        let c = 0;
+    public sumar(a, b) {
         let resultado = "";
+        let longA = a.length;
+        let longB = b.length;
+        if(longB > longA ){
+            let temp = b;
+            b = a;
+            a = temp;
+        }
         let acarreo = 0;
-        let strAcarreo;
-        for(let i=aux1.length-1; i<=0; i--){
-            c = Number(aux1[i])+Number(aux2[i])+acarreo;
-            if(c<10){
-                strAcarreo = "0".concat(c.toString());
-            }
-            acarreo = Number(c.toString()[0]);
-            resultado = resultado.concat(c.toString()[1])
+        let digitoA;
+        let digitoB;
+        let aux;
+        let digitoResultado;
+        for (let i = 0; i < a.length; i++) {
+            digitoA = parseInt(a.charAt(a.length - 1 - i));      
+            digitoB = parseInt(b.charAt(b.length - 1 - i));    
+            digitoB = (digitoB) ? digitoB : 0;                             
+            aux = (acarreo + digitoA + digitoB).toString();                 
+            digitoResultado = aux.charAt(aux.length - 1);            
+            acarreo = parseInt(aux.substr(0, aux.length - 1));  
+            acarreo = (acarreo) ? acarreo : 0;
+            resultado = (i === a.length - 1) ? aux + resultado : digitoResultado + resultado;
+        }
+        return resultado;
+    }
 
+    public restar(a, b) {
+        let resultado = "";
+        let longA = a.length;
+        let longB = b.length;
+        if(longB > longA ){
+            let temp = b;
+            b = a;
+            a = temp;
         }
-        if(acarreo>0){
-            resultado = resultado.concat(acarreo.toString())
+        let acarreo = 0;
+        let digitoA;
+        let digitoB;
+        let aux;
+        let digitoResultado;
+        for (let i = 0; i < a.length; i++) {
+            digitoA = parseInt(a.charAt(a.length - 1 - i));      
+            digitoB = parseInt(b.charAt(b.length - 1 - i));    
+            digitoB = (digitoB) ? digitoB : 0;
+            if(digitoA<digitoB){
+                aux = (((digitoA+10) - acarreo) - digitoB).toString();
+                digitoResultado = aux.charAt(aux.length - 1);
+                acarreo = (acarreo) ? acarreo : 0;
+                resultado = (i === a.length - 1) ? aux + resultado : digitoResultado + resultado;
+            }                  
+            aux = ((digitoA - acarreo) - digitoB).toString();                 
+            digitoResultado = aux.charAt(aux.length - 1);            
+            acarreo = parseInt(aux.substr(0, aux.length - 1));  
+            acarreo = (acarreo) ? acarreo : 0;
+            resultado = (i === a.length - 1) ? aux + resultado : digitoResultado + resultado;
         }
-        return resultado.split("").reverse().join();
-    }*/
+        let i=0
+        while((resultado[i] == "0") && (resultado.length != 1)){
+            resultado = resultado.replace("0", "")
+        }
+        return resultado;
+    }
 
 }
 export default Calculador;
