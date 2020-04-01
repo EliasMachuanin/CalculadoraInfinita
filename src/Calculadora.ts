@@ -108,8 +108,7 @@ export class Calculador {
             acarreo = (acarreo) ? acarreo : 0;
             resultado = (i === a.length - 1) ? aux + resultado : digitoResultado + resultado;
         }
-        let i=0
-        while((resultado[i] == "0") && (resultado.length != 1)){
+        while((resultado[0] == "0") && (resultado.length != 1)){
             resultado = resultado.replace("0", "")
         }
         return resultado;

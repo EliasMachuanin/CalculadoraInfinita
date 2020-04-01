@@ -77,12 +77,31 @@ describe('calculate', function() {
   });
 
   describe('calculate con string', function() {
-    it('restar str1 y 2', function() {
+    it('restar str1 y 2 igual a 0', function() {
       const c = new Calculador();
       let result = c.restar("9999999999999999999999999999999999999999999999", "9999999999999999999999999999999999999999999999");
       expect(result).equal("0");
     });
   });
+
+
+  describe('calculate con string', function() {
+    it('restar str1 y 2 distinto de 0', function() {
+      const c = new Calculador();
+      let result = c.restar("9999999999999999999999999999999999999999999999", "8888888888888888888888888888888888888888888888");
+      expect(result).equal("1111111111111111111111111111111111111111111111");
+    });
+  });
+
+
+  describe('calculate con string', function() {
+    it('restar str1 y 2 random', function() {
+      const c = new Calculador();
+      let result = c.restar("9999999999999999999999999", "8888888888888888888888888888888888888888888888");
+      expect(result).equal("8888888888888888888878888888888888888888888889");
+    });
+  });
+
 
 
   describe('calculate con string', function() {
