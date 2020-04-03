@@ -2,6 +2,8 @@ import { expect } from "chai";
 import { Calculador } from "../src/Calculadora";
 import { AccionReceptor } from "../src/accionReceptor";
 import { Traductor } from "../src/Traductor";
+import Contexto from "../src/Contexto";
+import { ExpresionNumerica } from "../src/ExpresionNumerica";
 
 
 describe('calculate', function() {
@@ -67,51 +69,6 @@ describe('calculate', function() {
       expect(result).equal(0);
     });
   });
-
-  describe('calculate con string', function() {
-    it('sumar str1 y 2', function() {
-      const c = new Calculador();
-      let result = c.sumar("9999999999999999999999999999999999999999999999", "9999999999999999999999999999999999999999999999");
-      expect(result).equal("19999999999999999999999999999999999999999999998");
-    });
-  });
-
-  describe('calculate con string', function() {
-    it('restar str1 y 2 igual a 0', function() {
-      const c = new Calculador();
-      let result = c.restar("9999999999999999999999999999999999999999999999", "9999999999999999999999999999999999999999999999");
-      expect(result).equal("0");
-    });
-  });
-
-
-  describe('calculate con string', function() {
-    it('restar str1 y 2 distinto de 0', function() {
-      const c = new Calculador();
-      let result = c.restar("9999999999999999999999999999999999999999999999", "8888888888888888888888888888888888888888888888");
-      expect(result).equal("1111111111111111111111111111111111111111111111");
-    });
-  });
-
-
-  describe('calculate con string', function() {
-    it('restar str1 y 2 random', function() {
-      const c = new Calculador();
-      let result = c.restar("9999999999999999999999999", "8888888888888888888888888888888888888888888888");
-      expect(result).equal("8888888888888888888878888888888888888888888889");
-    });
-  });
-
-
-
-  describe('calculate con string', function() {
-    it('multiplicar str1 y 2', function() {
-      const c = new Calculador();
-      let result = c.restar("99999999999", "99999999999");
-      expect(result).equal("9999999999800000000001");
-    });
-  });
-
 
   describe('verifyNumber', function() {
     it('actionNumero', function() {
@@ -205,10 +162,55 @@ describe('calculate', function() {
   });
   
 
-  describe('Parceador', function() {
-    it('parsear 5165195155165121951321195195132188 a int', function() {
-      const r = new Traductor();
-      expect(r.traducirComando("5165195155165121951321195195132188")).equal(5165195155165121951321195195132188);
+  describe('Contexto', function() {
+    it('normalizar contexto', function() {
+      const r = new Contexto("cero uno uno ");
+      expect(r.expresion).equal("cerounouno");
+    });
+  });
+
+  describe('Expresion', function() {
+    it('traducir 1', function() {
+      const r = new Contexto("uno");
+      const ex = new ExpresionNumerica()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("1");
     });
   });
   
+
+  describe('Expresion', function() {
+    it('traducir 100', function() {
+      const r = new Contexto("uno cero cero");
+      const ex = new ExpresionNumerica()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("100");
+    });
+  });
+
+  describe('Expresion', function() {
+    it('traducir 431', function() {
+      const r = new Contexto("cuatro tres uno");
+      const ex = new ExpresionNumerica()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("431");
+    });
+  });
+
+  describe('Expresion', function() {
+    it('traducir 4531131', function() {
+      const r = new Contexto("  cuatro cincotresunouno  tres uno ");
+      const ex = new ExpresionNumerica()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("4531131");
+    });
+  });
+
+  describe('Expresion', function() {
+    it('traducir 45311311', function() {
+      const r = new Contexto("  cuatro cincotresunouno  tres uno uno");
+      const ex = new ExpresionNumerica()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("45311311");
+    });
+  });
