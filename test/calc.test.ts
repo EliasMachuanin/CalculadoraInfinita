@@ -4,17 +4,18 @@ import { AccionReceptor } from "../src/accionReceptor";
 import { Traductor } from "../src/Traductor";
 import Contexto from "../src/Contexto";
 import { ExpresionNumerica } from "../src/ExpresionNumerica";
+import { ExpresionOperacion } from "../src/ExpresionOperacion";
 
 
 describe('Operar contexto', function() {
     it('Sumador', function() {
       const c = new Calculador();
       const ex = new ExpresionNumerica();
-      const con1 = new Contexto("cerounodostrescuatrocincoseissieteochonueve")
-      const con2 = new Contexto("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ")
+      const con1 = new Contexto("nuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenueve")
+      const con2 = new Contexto("uno")
       ex.traducirContexto(con1)
       ex.traducirContexto(con2)
-      expect(con1.valor + con2.valor).equal(4531131124621566500);
+      expect(con1.valor + con2.valor).equal(100000000000000000000000);
     });
   });
 
@@ -211,17 +212,17 @@ describe('Operar contexto', function() {
     });
   });
 
-  describe('Expresion', function() {
-    it('traducir 1', function() {
-      const r = new Contexto("uno");
+  describe('ExpresionNumerica', function() {
+    it('traducir 0', function() {
+      const r = new Contexto("cero");
       const ex = new ExpresionNumerica()
       ex.traducirContexto(r)
-      expect(r.valor).equal(1);
+      expect(r.valor).equal(0);
     });
   });
   
 
-  describe('Expresion', function() {
+  describe('ExpresionNumerica', function() {
     it('traducir 100', function() {
       const r = new Contexto("uno cero cero");
       const ex = new ExpresionNumerica()
@@ -230,7 +231,7 @@ describe('Operar contexto', function() {
     });
   });
 
-  describe('Expresion', function() {
+  describe('ExpresionNumerica', function() {
     it('traducir 431', function() {
       const r = new Contexto("cuatrotresuno");
       const ex = new ExpresionNumerica()
@@ -239,7 +240,7 @@ describe('Operar contexto', function() {
     });
   });
 
-  describe('Expresion', function() {
+  describe('ExpresionNumerica', function() {
     it('traducir 549', function() {
       const r = new Contexto("    cero cerocinco cuatro   nueve                           ");
       const ex = new ExpresionNumerica()
@@ -248,7 +249,7 @@ describe('Operar contexto', function() {
     });
   });
 
-  describe('Expresion', function() {
+  describe('ExpresionNumerica', function() {
     it('traducir 45311311', function() {
       const r = new Contexto("  cuatro cincotresunouno  tres uno uno");
       const ex = new ExpresionNumerica()
@@ -257,7 +258,7 @@ describe('Operar contexto', function() {
     });
   });
 
-  describe('Expresion', function() {
+  describe('ExpresionNumerica', function() {
     it('traducir 4531131124498109211', function() {
       const r = new Contexto("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ");
       const ex = new ExpresionNumerica()
@@ -266,7 +267,7 @@ describe('Operar contexto', function() {
     });
   });
 
-  describe('Expresion', function() {
+  describe('ExpresionNumerica', function() {
     it('traducir 0123456789', function() {
       const r = new Contexto("cerounodostrescuatrocincoseissieteochonueve");
       const ex = new ExpresionNumerica()
@@ -275,11 +276,48 @@ describe('Operar contexto', function() {
     });
   });
 
-  describe('Expresion', function() {
+  describe('ExpresionNumerica', function() {
     it('Mantener comando introducido', function() {
       const r = new Contexto("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ");
       const ex = new ExpresionNumerica()
       ex.traducirContexto(r)
       expect(r.expresion).equal("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ");
+    });
+  });
+
+
+  describe('ExpresionOperacion', function() {
+    it('traducir suma', function() {
+      const r = new Contexto("sumar");
+      const ex = new ExpresionOperacion()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("+");
+    });
+  });
+
+  describe('ExpresionOperacion', function() {
+    it('traducir resta', function() {
+      const r = new Contexto("restar");
+      const ex = new ExpresionOperacion()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("-");
+    });
+  });
+
+  describe('ExpresionOperacion', function() {
+    it('traducir multiplicar', function() {
+      const r = new Contexto("multiplicar");
+      const ex = new ExpresionOperacion()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("*");
+    });
+  });
+
+  describe('ExpresionOperacion', function() {
+    it('traducir dividir', function() {
+      const r = new Contexto("dividir");
+      const ex = new ExpresionOperacion()
+      ex.traducirContexto(r)
+      expect(r.expresionTraducida).equal("/");
     });
   });
