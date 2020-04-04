@@ -6,11 +6,53 @@ import Contexto from "../src/Contexto";
 import { ExpresionNumerica } from "../src/ExpresionNumerica";
 
 
-describe('calculate', function() {
+describe('Operar contexto', function() {
     it('Sumador', function() {
       const c = new Calculador();
-      let result = c.suma(5, 2);
-      expect(result).equal(7);
+      const ex = new ExpresionNumerica();
+      const con1 = new Contexto("cerounodostrescuatrocincoseissieteochonueve")
+      const con2 = new Contexto("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ")
+      ex.traducirContexto(con1)
+      ex.traducirContexto(con2)
+      expect(con1.valor + con2.valor).equal(4531131124621566500);
+    });
+  });
+
+  describe('Operar contexto', function() {
+    it('Restador', function() {
+      const c = new Calculador();
+      const ex = new ExpresionNumerica();
+      const con1 = new Contexto("cerounodostrescuatrocincoseissieteochonueve")
+      const con2 = new Contexto("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ")
+      ex.traducirContexto(con1)
+      ex.traducirContexto(con2)
+      expect(con1.valor - con2.valor).equal(-4531131124374652422);
+    });
+  });
+
+
+  describe('Operar contexto', function() {
+    it('Multiplicador', function() {
+      const c = new Calculador();
+      const ex = new ExpresionNumerica();
+      const con1 = new Contexto("cerounodostrescuatrocincoseissieteochonueve")
+      const con2 = new Contexto("  dos      ")
+      ex.traducirContexto(con1)
+      ex.traducirContexto(con2)
+      expect(con1.valor * con2.valor).equal(246913578);
+    });
+  });
+
+
+  describe('Operar contexto', function() {
+    it('Divisor', function() {
+      const c = new Calculador();
+      const ex = new ExpresionNumerica();
+      const con1 = new Contexto("cerounodostrescuatrocincoseissieteochonueve")
+      const con2 = new Contexto("     dos        ")
+      ex.traducirContexto(con1)
+      ex.traducirContexto(con2)
+      expect(con1.valor/ con2.valor).equal(61728394.5);
     });
   });
 
@@ -165,7 +207,7 @@ describe('calculate', function() {
   describe('Contexto', function() {
     it('normalizar contexto', function() {
       const r = new Contexto("cero uno uno ");
-      expect(r.expresion).equal("cerounouno");
+      expect(r.expresionAdaptada).equal("cerounouno");
     });
   });
 
@@ -174,7 +216,7 @@ describe('calculate', function() {
       const r = new Contexto("uno");
       const ex = new ExpresionNumerica()
       ex.traducirContexto(r)
-      expect(r.expresionTraducida).equal("1");
+      expect(r.valor).equal(1);
     });
   });
   
@@ -184,13 +226,13 @@ describe('calculate', function() {
       const r = new Contexto("uno cero cero");
       const ex = new ExpresionNumerica()
       ex.traducirContexto(r)
-      expect(r.expresionTraducida).equal("100");
+      expect(r.valor).equal(100);
     });
   });
 
   describe('Expresion', function() {
     it('traducir 431', function() {
-      const r = new Contexto("cuatro tres uno");
+      const r = new Contexto("cuatrotresuno");
       const ex = new ExpresionNumerica()
       ex.traducirContexto(r)
       expect(r.expresionTraducida).equal("431");
@@ -198,11 +240,11 @@ describe('calculate', function() {
   });
 
   describe('Expresion', function() {
-    it('traducir 4531131', function() {
-      const r = new Contexto("  cuatro cincotresunouno  tres uno ");
+    it('traducir 549', function() {
+      const r = new Contexto("    cero cerocinco cuatro   nueve                           ");
       const ex = new ExpresionNumerica()
       ex.traducirContexto(r)
-      expect(r.expresionTraducida).equal("4531131");
+      expect(r.valor).equal(549);
     });
   });
 
@@ -211,6 +253,33 @@ describe('calculate', function() {
       const r = new Contexto("  cuatro cincotresunouno  tres uno uno");
       const ex = new ExpresionNumerica()
       ex.traducirContexto(r)
-      expect(r.expresionTraducida).equal("45311311");
+      expect(r.valor).equal(45311311);
+    });
+  });
+
+  describe('Expresion', function() {
+    it('traducir 4531131124498109211', function() {
+      const r = new Contexto("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ");
+      const ex = new ExpresionNumerica()
+      ex.traducirContexto(r)
+      expect(r.valor).equal(4531131124498109211);
+    });
+  });
+
+  describe('Expresion', function() {
+    it('traducir 0123456789', function() {
+      const r = new Contexto("cerounodostrescuatrocincoseissieteochonueve");
+      const ex = new ExpresionNumerica()
+      ex.traducirContexto(r)
+      expect(r.valor).equal(123456789);
+    });
+  });
+
+  describe('Expresion', function() {
+    it('Mantener comando introducido', function() {
+      const r = new Contexto("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ");
+      const ex = new ExpresionNumerica()
+      ex.traducirContexto(r)
+      expect(r.expresion).equal("  cuatro cincotresunouno  tres uno uno dos cuatrocuatro    nueveochounoceronueve  dos uno uno        ");
     });
   });

@@ -1,89 +1,52 @@
 import { Contexto } from "./Contexto";
 
 export abstract class Expresion{
-    public abstract cero();
-    public abstract uno();
-    public abstract dos();
-    public abstract tres();
-    public abstract cuatro();
-    public abstract cinco();
-    public abstract seis();
-    public abstract siete();
-    public abstract ocho();
-    public abstract nueve();
 
     public abstract traducirContexto(a : Contexto)
 
-    public borrarResto(a: string, num : string){
-        let respuesta;
-        switch(num){
-            case "0":
-                respuesta = a.replace("cero", "");
-                break;
-            case "1":
-                respuesta = a.replace("uno", "");
-                break;                
-            case "2":
-                respuesta = a.replace("dos", "");
-                break;
-            case "3":
-                respuesta = a.replace("tres", "");
-                break;
-            case "4":
-                respuesta = a.replace("cuatro", "");
-                break;
-            case "5":
-                respuesta = a.replace("cinco", "");
-                break;
-            case "6":
-                respuesta = a.replace("seis", "");
-                break;
-            case "7":
-                respuesta = a.replace("siete", "");
-                break;
-            case "8":
-                respuesta = a.replace("ocho", "");
-                break;
-            case "9":
-                respuesta = a.replace("nueve", "");
-                break;
-        }
-        return respuesta;
-
-    }
-
-    public traducirNumero(num : string){
-        let respuesta;
+    public traducirNumero(a:Contexto){
+        let respuesta,num;
+        num = a.expresionAdaptada.substring(0, 3)
         switch(num){
             case "cer":
                 respuesta = "0";
+                a.expresionAdaptada = a.expresionAdaptada.replace("cero", "");
                 break;
             case "uno":
                 respuesta = "1";
+                a.expresionAdaptada = a.expresionAdaptada.replace("uno", "");
                 break;
             case "dos":
                 respuesta = "2";
+                a.expresionAdaptada = a.expresionAdaptada.replace("dos", "");
                 break;
             case "tre":
                 respuesta = "3";
+                a.expresionAdaptada = a.expresionAdaptada.replace("tres", "");
                 break;
             case "cua":
                 respuesta = "4";
+                a.expresionAdaptada = a.expresionAdaptada.replace("cuatro", "");
                 break;
             case "cin":
                 respuesta = "5";
+                a.expresionAdaptada = a.expresionAdaptada.replace("cinco", "");
                 break;
             case "sei":
                 respuesta = "6";
+                a.expresionAdaptada = a.expresionAdaptada.replace("seis", "");
                 break;
             case "sie":
                 respuesta = "7";
+                a.expresionAdaptada = a.expresionAdaptada.replace("siete", "");
                 break;
             case "och":
                 respuesta = "8";
+                a.expresionAdaptada = a.expresionAdaptada.replace("ocho", "");
                 break;
             case "nue":
                 respuesta = "9";
+                a.expresionAdaptada = a.expresionAdaptada.replace("nueve", "");
                 break;
                 
         }

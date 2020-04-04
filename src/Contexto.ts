@@ -1,23 +1,24 @@
 export class Contexto {
     public expresion : string;
+    public expresionAdaptada : string;
     public expresionTraducida : string;
-    public valor : number;
+    public valor;
   
     constructor(a : string){
-      this.expresion=a
-      this.expresion = this.adaptarContexto()
+      this.expresion = a
+      this.expresionAdaptada = this.adaptarContexto()
       this.expresionTraducida=""
     }
 
     public adaptarContexto(){
-      let aux = this.expresion
+      let aux = this.expresion, aux2 = this.expresion;
 
-      this.expresion = this.expresion.replace(" ", "")
-      while(aux != this.expresion){
-          aux = this.expresion 
-          this.expresion = this.expresion.replace(" ", "")
+      aux2 = aux2.replace(" ", "")
+      while(aux != aux2){
+          aux = aux2 
+          aux2 = aux2.replace(" ", "")
       }
-      return aux
+      return this.expresionAdaptada = aux
   }
 
 } export default Contexto
