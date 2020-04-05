@@ -2,7 +2,7 @@ export class Contexto {
     public expresion : string;
     public expresionAdaptada : string;
     public expresionTraducida : string;
-    public valor;
+    public valor = null;
   
     constructor(a : string){
       this.expresion = a

@@ -4,10 +4,18 @@ import Contexto from "./Contexto"
 
 export class ExpresionOperacion extends Expresion {
 
-    public traducirContexto(a : Contexto){
+    public interpret(a : Contexto){
         let aux;
         aux=a;
-        return a.expresionTraducida = this.traducirOperacion(aux)
+        a.expresionTraducida = this.traducirOperacion(aux)
+        if(a.expresionTraducida==""){
+            return a.expresionTraducida
+        }
+        else{
+            a.valor = a.expresionTraducida
+            return a.expresionTraducida
+        }
+        
     }
 
     public traducirOperacion(a:Contexto){
@@ -24,6 +32,9 @@ export class ExpresionOperacion extends Expresion {
                 break;
             case "dividir":
                 respuesta = "/";
+                break;
+            default:
+                respuesta = ""
                 break;
         }
         return respuesta;

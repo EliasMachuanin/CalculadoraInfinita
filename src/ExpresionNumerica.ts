@@ -4,14 +4,20 @@ import Contexto from "./Contexto"
 
 export class ExpresionNumerica extends Expresion {
 
-    public traducirContexto(a : Contexto){
+    public interpret(a : Contexto){
         let aux2;
         aux2=a;
-        while(aux2.expresionAdaptada!=""){
+        while((aux2.expresionAdaptada!="")&&(a.expresionTraducida!="o")){
             a.expresionTraducida = a.expresionTraducida.concat(this.traducirNumero(aux2))
         }
-        a.valor = parseInt(a.expresionTraducida)
+        if(a.expresionTraducida=="o"){
+            a.expresionTraducida = ""
+        }
+        else{
+            a.valor = parseInt(a.expresionTraducida)
+        }
         return a.expresionTraducida;
+
     }
 
     public traducirNumero(a:Contexto){
@@ -57,6 +63,9 @@ export class ExpresionNumerica extends Expresion {
             case "nue":
                 respuesta = "9";
                 a.expresionAdaptada = a.expresionAdaptada.replace("nueve", "");
+                break;
+            default:
+                respuesta = "o";
                 break;
                 
         }
