@@ -4,20 +4,20 @@ import { ExpresionOperacion } from "./ExpresionOperacion";
 export class Calculadora {
     public resultado = null
     public operando = null
-    public operacion =""
+    public operacion = null
 
     constructor(){
     }
 
     public obtenerNuevoElemento(a : Contexto){
         if(a.tipo instanceof ExpresionOperacion){
-            if((this.resultado != null)&&(this.operacion == "")){
+            if((this.resultado != null)&&(this.operacion == null)){
                 this.operacion = a.valor
             }
             else{
                 this.resultado = null
                 this.operando=null
-                this.operacion = ""
+                this.operacion = null
                 console.log("Syntax Error") 
             }
         }
@@ -25,14 +25,14 @@ export class Calculadora {
             if(this.resultado == null){
                 this.resultado = a.valor
             }
-            else if(this.operacion != ""){
+            else if(this.operacion != null){
                 this.operando = a.valor
                 this.realizarOperacion()
             }
             else{
                 this.resultado = null
                 this.operando=null
-                this.operacion = ""
+                this.operacion = null
                 console.log("Syntax Error") 
                 
             }
@@ -44,22 +44,22 @@ export class Calculadora {
             case "+":
                 this.suma()
                 this.operando=null
-                this.operacion = ""
+                this.operacion = null
                 break;
             case "-":
                 this.resta()
                 this.operando=null
-                this.operacion = ""
+                this.operacion = null
                 break;
             case "*":
                 this.producto()
                 this.operando=null
-                this.operacion = ""
+                this.operacion = null
                 break;
             case "/":
                 this.division()
-                this.operando=null
-                this.operacion = ""
+                this.operando= null
+                this.operacion = null
                 break;      
         }
     }
