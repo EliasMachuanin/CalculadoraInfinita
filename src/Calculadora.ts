@@ -1,67 +1,81 @@
 import Contexto from "./Contexto";
 
-export class Calculador {
-    public resultado
-    public nuevoOperando = null
-    public operacion
+export class Calculadora {
+    public resultado = null
+    public operando = null
+    public operacion =""
 
     constructor(){
     }
 
     public obtenerNuevoOperando(a : Contexto){
-        if(this.resultado == undefined){
+        if(this.resultado != null){
+            this.operando = a.valor
+        }
+        else{
             this.resultado = a.valor
         }
-        else if(this.operacion != ""){
-            this.nuevoOperando = a.valor
-        }
+        /*else{
+            this.resultado = undefined
+            this.operando=null
+            this.operacion = ""
+            throw new Error("Syntax Error") 
+        }*/
     }
 
     public obtenerNuevaOperacion(a : Contexto){
-        this.operacion = a.valor
+        //if((this.resultado != null)&&(this.operacion == "")){
+            this.operacion = a.valor
+        //}
+        /*else{
+            this.resultado = undefined
+            this.operando=null
+            this.operacion = ""
+            throw new Error("Syntax Error") 
+        }*/
     }
 
     public realizarOperacion(){
         switch(this.operacion){
             case "+":
-                this.suma
-                this.nuevoOperando=null
+                this.suma()
+                this.operando=null
                 this.operacion = ""
                 break;
             case "-":
-                this.resta
-                this.nuevoOperando=null
+                this.resta()
+                this.operando=null
                 this.operacion = ""
                 break;
             case "*":
-                this.producto
-                this.nuevoOperando=null
+                this.producto()
+                this.operando=null
                 this.operacion = ""
                 break;
             case "/":
-                this.division
-                this.nuevoOperando=null
+                this.division()
+                this.operando=null
                 this.operacion = ""
                 break;      
         }
     }
 
 
-    private suma(){
-        this.resultado = this.resultado + this.nuevoOperando
+    public suma(){
+        this.resultado = this.resultado + this.operando
     }
 
-    private resta(){
-        this.resultado = this.resultado - this.nuevoOperando
+    public resta(){
+        this.resultado = this.resultado - this.operando
     }
 
-    private producto(){
-        this.resultado = this.resultado * this.nuevoOperando
+    public producto(){
+        this.resultado = this.resultado * this.operando
     }
 
-    private division(){
-        this.resultado = this.resultado / this.nuevoOperando
+    public division(){
+        this.resultado = this.resultado / this.operando
     }
 
 }
-export default Calculador;
+export default Calculadora;

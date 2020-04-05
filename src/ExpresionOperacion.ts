@@ -8,14 +8,9 @@ export class ExpresionOperacion extends Expresion {
         let aux;
         aux=a;
         a.expresionTraducida = this.traducirOperacion(aux)
-        if(a.expresionTraducida==""){
-            return a.expresionTraducida
-        }
-        else{
+        if(a.expresionTraducida!=""){
             a.valor = a.expresionTraducida
-            return a.expresionTraducida
         }
-        
     }
 
     public traducirOperacion(a:Contexto){

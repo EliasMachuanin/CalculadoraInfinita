@@ -12,12 +12,11 @@ export class ExpresionNumerica extends Expresion {
         }
         if(a.expresionTraducida=="o"){
             a.expresionTraducida = ""
+            a.valor = null
         }
         else{
             a.valor = parseInt(a.expresionTraducida)
         }
-        return a.expresionTraducida;
-
     }
 
     public traducirNumero(a:Contexto){
