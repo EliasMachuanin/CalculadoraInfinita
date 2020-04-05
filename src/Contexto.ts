@@ -1,7 +1,7 @@
 import Expresion from "./Expresion";
 
 export class Contexto {
-    public tipo : Expresion;
+    public tipo : Expresion = null;
     public expresion : string;
     public expresionAdaptada : string;
     public valor = null;

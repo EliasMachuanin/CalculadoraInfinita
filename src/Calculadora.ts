@@ -40,28 +40,9 @@ export class Calculadora {
     }
 
     public realizarOperacion(){
-        switch(this.operacion){
-            case "+":
-                this.suma()
-                this.operando=null
-                this.operacion = null
-                break;
-            case "-":
-                this.resta()
-                this.operando=null
-                this.operacion = null
-                break;
-            case "*":
-                this.producto()
-                this.operando=null
-                this.operacion = null
-                break;
-            case "/":
-                this.division()
-                this.operando= null
-                this.operacion = null
-                break;      
-        }
+        this.operacion()
+        this.operacion = null
+        this.operando = null
     }
 
 
