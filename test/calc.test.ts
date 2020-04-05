@@ -180,7 +180,7 @@ describe('Operar contexto', function() {
       const r = new Contexto("cuatrotresuno");
       const ex = new ExpresionNumerica()
       ex.interpret(r)
-      expect(r.expresionTraducida).equal("431");
+      expect(r.valor).equal(431);
     });
   });
 
@@ -316,7 +316,7 @@ describe('Operar contexto', function() {
       const r = new Contexto("   unotres cero");
       const ex = new ExpresionOperacion()
       ex.interpret(r)
-      expect(r.expresionTraducida).equal("");
+      expect(r.valor).equal(null);
     });
   });
 
@@ -388,17 +388,8 @@ describe('Operar contexto', function() {
         }
       }
       for(let j =0; j<listaContextos.length; j++){
-        if(j==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-        }
-        if(j%2==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-          c.realizarOperacion()
-        }
-        else{
-          c.obtenerNuevaOperacion(listaContextos[j])
-        }
-      }
+        c.obtenerNuevoElemento(listaContextos[j])
+    }
       expect(c.resultado).equal(2);
     });
   });
@@ -422,17 +413,8 @@ describe('Operar contexto', function() {
         }
       }
       for(let j =0; j<listaContextos.length; j++){
-        if(j==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-        }
-        if(j%2==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-          c.realizarOperacion()
-        }
-        else{
-          c.obtenerNuevaOperacion(listaContextos[j])
-        }
-      }
+        c.obtenerNuevoElemento(listaContextos[j])
+    }
       expect(c.resultado).equal(0);
     });
   });
@@ -456,17 +438,8 @@ describe('Operar contexto', function() {
         }
       }
       for(let j =0; j<listaContextos.length; j++){
-        if(j==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-        }
-        if(j%2==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-          c.realizarOperacion()
-        }
-        else{
-          c.obtenerNuevaOperacion(listaContextos[j])
-        }
-      }
+        c.obtenerNuevoElemento(listaContextos[j])
+    }
       expect(c.resultado).equal(25000);
     });
   });
@@ -490,17 +463,8 @@ describe('Operar contexto', function() {
         }
       }
       for(let j =0; j<listaContextos.length; j++){
-        if(j==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-        }
-        if(j%2==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-          c.realizarOperacion()
-        }
-        else{
-          c.obtenerNuevaOperacion(listaContextos[j])
-        }
-      }
+        c.obtenerNuevoElemento(listaContextos[j])
+    }
       expect(c.resultado).equal(1000000000000000000000000000000);
     });
   });
@@ -529,17 +493,8 @@ describe('Operar contexto', function() {
         }
       }
       for(let j =0; j<listaContextos.length; j++){
-        if(j==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-        }
-        if(j%2==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-          c.realizarOperacion()
-        }
-        else{
-          c.obtenerNuevaOperacion(listaContextos[j])
-        }
-      }
+        c.obtenerNuevoElemento(listaContextos[j])
+    }
       expect(c.resultado).equal(100);
     });
   });
@@ -568,17 +523,93 @@ describe('Operar contexto', function() {
         }
       }
       for(let j =0; j<listaContextos.length; j++){
-        if(j==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-        }
-        if(j%2==0){
-          c.obtenerNuevoOperando(listaContextos[j])
-          c.realizarOperacion()
-        }
-        else{
-          c.obtenerNuevaOperacion(listaContextos[j])
-        }
+          c.obtenerNuevoElemento(listaContextos[j])
       }
       expect(c.resultado).equal(100);
+    });
+  });
+
+
+  describe('Calculadora', function() {
+    it('Calculo Completo 3', function() {
+      let listaContextos = []
+      let listaExpresiones = []
+      const c = new Calculadora()
+      listaContextos.push(new Contexto("dos cinco")) 
+      listaContextos.push(new Contexto("dos"))
+      listaContextos.push(new Contexto("dividir")) 
+      listaContextos.push(new Contexto("cinco"))
+      listaContextos.push(new Contexto("multiplicar"))
+      listaContextos.push(new Contexto("unocero"))
+      listaExpresiones.push(new ExpresionNumerica()) 
+      listaExpresiones.push(new ExpresionOperacion())
+      for(let j = 0; j < listaContextos.length; j++){
+        let i = 0
+        while(listaContextos[j].valor==null){
+          listaExpresiones[i].interpret(listaContextos[j])
+          i=i+1;
+        }
+      }
+      for(let j =0; j<listaContextos.length; j++){
+        c.obtenerNuevoElemento(listaContextos[j])
+      }
+      expect(c.resultado).equal(50);
+    });
+  });
+
+
+  describe('Calculadora', function() {
+    it('Calculo Completo Julian', function() {
+      let listaContextos = []
+      let listaExpresiones = []
+      const c = new Calculadora()
+      listaContextos.push(new Contexto("cin con uevecuat rodos")) 
+      listaContextos.push(new Contexto("divi di r"))
+      listaContextos.push(new Contexto("tre scuatr o"))
+      listaContextos.push(new Contexto("mult iplic ar")) 
+      listaContextos.push(new Contexto("d os t r e scuat roc inc o"))
+      listaContextos.push(new Contexto("tre scuatr o"))
+      listaContextos.push(new Contexto("mult iplic ar")) 
+      listaContextos.push(new Contexto("d os t r e scuat roc inc o"))
+      listaContextos.push(new Contexto("mult iplic ar"))
+      listaContextos.push(new Contexto("tre scuatr o"))
+      listaExpresiones.push(new ExpresionNumerica()) 
+      listaExpresiones.push(new ExpresionOperacion())
+      for(let j = 0; j < listaContextos.length; j++){
+        let i = 0
+        while(listaContextos[j].valor==null){
+          listaExpresiones[i].interpret(listaContextos[j])
+          i=i+1;
+        }
+      }
+      for(let j =0; j<listaContextos.length; j++){
+        c.obtenerNuevoElemento(listaContextos[j])
+      }
+      expect(c.resultado).equal(79730);
+    });
+  });
+
+
+  describe('Calculadora', function() {
+    it('Julian 2', function() {
+      let listaContextos = []
+      let listaExpresiones = []
+      const c = new Calculadora()
+      listaContextos.push(new Contexto("uno")) 
+      listaContextos.push(new Contexto("sumar"))
+      listaContextos.push(new Contexto("uno"))
+      listaExpresiones.push(new ExpresionNumerica()) 
+      listaExpresiones.push(new ExpresionOperacion())
+      for(let j = 0; j < listaContextos.length; j++){
+        let i = 0
+        while(listaContextos[j].valor==null){
+          listaExpresiones[i].interpret(listaContextos[j])
+          i=i+1;
+        }
+      }
+      for(let j =0; j<listaContextos.length; j++){
+        c.obtenerNuevoElemento(listaContextos[j])
+      }
+      expect(c.resultado).equal(2);
     });
   });

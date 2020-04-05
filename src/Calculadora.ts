@@ -1,4 +1,5 @@
 import Contexto from "./Contexto";
+import { ExpresionOperacion } from "./ExpresionOperacion";
 
 export class Calculadora {
     public resultado = null
@@ -8,31 +9,34 @@ export class Calculadora {
     constructor(){
     }
 
-    public obtenerNuevoOperando(a : Contexto){
-        if(this.resultado != null){
-            this.operando = a.valor
+    public obtenerNuevoElemento(a : Contexto){
+        if(a.tipo instanceof ExpresionOperacion){
+            if((this.resultado != null)&&(this.operacion == "")){
+                this.operacion = a.valor
+            }
+            else{
+                this.resultado = null
+                this.operando=null
+                this.operacion = ""
+                console.log("Syntax Error") 
+            }
         }
         else{
-            this.resultado = a.valor
+            if(this.resultado == null){
+                this.resultado = a.valor
+            }
+            else if(this.operacion != ""){
+                this.operando = a.valor
+                this.realizarOperacion()
+            }
+            else{
+                this.resultado = null
+                this.operando=null
+                this.operacion = ""
+                console.log("Syntax Error") 
+                
+            }
         }
-        /*else{
-            this.resultado = undefined
-            this.operando=null
-            this.operacion = ""
-            throw new Error("Syntax Error") 
-        }*/
-    }
-
-    public obtenerNuevaOperacion(a : Contexto){
-        //if((this.resultado != null)&&(this.operacion == "")){
-            this.operacion = a.valor
-        //}
-        /*else{
-            this.resultado = undefined
-            this.operando=null
-            this.operacion = ""
-            throw new Error("Syntax Error") 
-        }*/
     }
 
     public realizarOperacion(){

@@ -10,6 +10,7 @@ export class ExpresionOperacion extends Expresion {
         a.expresionTraducida = this.traducirOperacion(aux)
         if(a.expresionTraducida!=""){
             a.valor = a.expresionTraducida
+            a.tipo = this
         }
     }
 

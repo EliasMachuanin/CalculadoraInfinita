@@ -16,6 +16,7 @@ export class ExpresionNumerica extends Expresion {
         }
         else{
             a.valor = parseInt(a.expresionTraducida)
+            a.tipo = this
         }
     }
 
