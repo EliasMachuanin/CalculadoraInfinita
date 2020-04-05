@@ -5,17 +5,15 @@ import Contexto from "./Contexto"
 export class ExpresionNumerica extends Expresion {
 
     public interpret(a : Contexto){
-        let aux2;
-        aux2=a;
-        while((aux2.expresionAdaptada!="")&&(a.expresionTraducida!="o")){
-            a.expresionTraducida = a.expresionTraducida.concat(this.traducirNumero(aux2))
+        let aux = "", aux2 = a;
+        while((aux2.expresionAdaptada!="")&&(aux!="o")){
+            aux = aux.concat(this.traducirNumero(aux2))
         }
-        if(a.expresionTraducida=="o"){
-            a.expresionTraducida = ""
+        if(aux=="o"){
             a.valor = null
         }
         else{
-            a.valor = parseInt(a.expresionTraducida)
+            a.valor = parseInt(aux)
             a.tipo = this
         }
     }

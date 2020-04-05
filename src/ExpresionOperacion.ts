@@ -5,11 +5,10 @@ import Contexto from "./Contexto"
 export class ExpresionOperacion extends Expresion {
 
     public interpret(a : Contexto){
-        let aux;
-        aux=a;
-        a.expresionTraducida = this.traducirOperacion(aux)
-        if(a.expresionTraducida!=""){
-            a.valor = a.expresionTraducida
+        let aux = a, aux2 = "";
+        aux2 = this.traducirOperacion(aux)
+        if(aux2!=""){
+            a.valor = aux2
             a.tipo = this
         }
     }

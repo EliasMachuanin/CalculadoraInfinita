@@ -1,16 +1,15 @@
 import Expresion from "./Expresion";
 
 export class Contexto {
+    public tipo : Expresion;
     public expresion : string;
     public expresionAdaptada : string;
-    public expresionTraducida : string;
     public valor = null;
-    public tipo : Expresion
+
   
     constructor(a : string){
       this.expresion = a
       this.expresionAdaptada = this.adaptarContexto()
-      this.expresionTraducida=""
     }
 
     public adaptarContexto(){
