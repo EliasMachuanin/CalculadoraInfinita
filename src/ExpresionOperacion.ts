@@ -1,6 +1,6 @@
 import Expresion from "./Expresion";
 import Contexto from "./Contexto"
-import Calculadora from "./Calculadora";
+import OperacionFactory from "./OperacionFactory";
 
 
 export class ExpresionOperacion extends Expresion {
@@ -16,19 +16,19 @@ export class ExpresionOperacion extends Expresion {
 
     public traducirOperacion(a:Contexto){
         let respuesta;
-        const c = new Calculadora()
+        const f = new OperacionFactory()
         switch(a.expresionAdaptada){
             case "sumar":
-                respuesta = c.suma;
+                respuesta = f.factoryMethod("s");
                 break;
             case "restar":
-                respuesta = c.resta;
+                respuesta = f.factoryMethod("r");
                 break;
             case "multiplicar":
-                respuesta = c.producto;
+                respuesta = f.factoryMethod("p");
                 break;
             case "dividir":
-                respuesta = c.division;
+                respuesta = f.factoryMethod("d");
                 break;
             default:
                 respuesta = null

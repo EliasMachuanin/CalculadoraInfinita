@@ -1,9 +1,10 @@
 import { ExpresionNumerica } from "./ExpresionNumerica"
 import { ExpresionOperacion } from "./ExpresionOperacion"
+import Factory from "./Factory"
 
-export class ExpresionFactory{
+export class ExpresionFactory extends Factory{
 
-    public static factoryMethod(tipo : string){
+    public factoryMethod(tipo : string){
         let nuevaE
         if(tipo == "n"){
             nuevaE = new ExpresionNumerica()

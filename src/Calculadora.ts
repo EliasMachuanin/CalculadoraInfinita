@@ -40,26 +40,9 @@ export class Calculadora {
     }
 
     public realizarOperacion(){
-        this.operacion()
+        this.resultado = this.operacion.implementar(this.resultado, this.operando)
         this.operacion = null
         this.operando = null
-    }
-
-
-    public suma(){
-        this.resultado = this.resultado + this.operando
-    }
-
-    public resta(){
-        this.resultado = this.resultado - this.operando
-    }
-
-    public producto(){
-        this.resultado = this.resultado * this.operando
-    }
-
-    public division(){
-        this.resultado = this.resultado / this.operando
     }
 
 }
