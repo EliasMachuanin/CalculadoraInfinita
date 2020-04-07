@@ -369,7 +369,7 @@ describe('Operar contexto', function() {
       let listaExpresiones = []
       const c = new Calculadora()
       const f = new ExpresionFactory()
-      listaContextos.push(new Contexto("uno")) 
+      listaContextos.push(new Contexto("nuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenuevenueve")) 
       listaContextos.push(new Contexto("sumar"))
       listaContextos.push(new Contexto("uno"))
       listaExpresiones.push(f.factoryMethod("n")) 
@@ -384,7 +384,7 @@ describe('Operar contexto', function() {
       for(let j =0; j<listaContextos.length; j++){
         c.obtenerNuevoElemento(listaContextos[j])
     }
-      expect(c.resultado).equal(2);
+      expect(c.resultado).equal(100000000000000000000000);
     });
   });
 
