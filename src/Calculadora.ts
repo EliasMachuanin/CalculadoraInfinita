@@ -9,7 +9,7 @@ export class Calculadora {
     constructor(){
     }
 
-    public obtenerNuevoElemento(a : Contexto){
+    public procesarNuevoElemento(a : Contexto){
         if(a.tipo instanceof ExpresionOperacion){
             if((this.resultado != null)&&(this.operacion == null)){
                 this.operacion = a.valor
