@@ -592,3 +592,24 @@ describe('Operar contexto', function() {
       expect(c.resultado).equal(null);
     });
   });
+
+
+  describe('Prueba Profesor', function() {
+    it('Calculo 100 digitos', function() {
+      let listaContextos = []
+      const c = new Calculadora()
+      const p = new Parser()
+      let a = "", b = "uno"
+      for(let i = 0 ; i < 100 ; i++){
+        a = a.concat("nueve")
+      }
+      listaContextos.push(new Contexto(a))
+      listaContextos.push(new Contexto("sumar"))
+      listaContextos.push(new Contexto("uno"))
+      for(let j = 0; j < listaContextos.length; j++){
+        p.evaluate(listaContextos[j])
+        c.procesarNuevoElemento(listaContextos[j])
+      }
+      expect(c.resultado).equal(10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000);
+    });
+  });

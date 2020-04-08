@@ -6,7 +6,7 @@ export class ExpresionNumerica extends Expresion {
 
     public interpret(a : Contexto){
         let aux = "", aux2 = a;
-        var error = /o/gi; 
+        let error = /o/gi; 
         while((aux2.expresionAdaptada!="")&&(aux.search(error) == -1)){
             aux = aux.concat(this.traducirNumero(aux2))
         }
