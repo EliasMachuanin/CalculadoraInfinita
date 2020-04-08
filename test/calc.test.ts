@@ -576,3 +576,19 @@ describe('Operar contexto', function() {
       expect(c.resultado).equal(null);
     });
   });
+
+  describe('Calculadora', function() {
+    it('Calculo comandos 3', function() {
+      let listaContextos = []
+      const c = new Calculadora()
+      const p = new Parser()
+      listaContextos.push(new Contexto("cin con uevecuat rodos")) 
+      listaContextos.push(new Contexto("dividir"))
+      listaContextos.push(new Contexto("re scuatr o"))
+      for(let j = 0; j < listaContextos.length; j++){
+        p.evaluate(listaContextos[j])
+        c.procesarNuevoElemento(listaContextos[j])
+      }
+      expect(c.resultado).equal(null);
+    });
+  });

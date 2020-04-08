@@ -1,5 +1,7 @@
 import Contexto from "./Contexto";
 import { ExpresionOperacion } from "./ExpresionOperacion";
+import { ExpresionNumerica } from "./ExpresionNumerica";
+
 
 export class Calculadora {
     public resultado = null
@@ -21,7 +23,7 @@ export class Calculadora {
                 console.log("Syntax Error") 
             }
         }
-        else{
+        else if(a.tipo instanceof ExpresionNumerica){
             if(this.resultado == null){
                 this.resultado = a.valor
             }
@@ -36,6 +38,12 @@ export class Calculadora {
                 console.log("Syntax Error") 
                 
             }
+        }
+        else{
+            this.resultado = null
+            this.operando=null
+            this.operacion = null
+            console.log("Syntax Error")             
         }
     }
 
