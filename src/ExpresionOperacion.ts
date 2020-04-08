@@ -17,22 +17,20 @@ export class ExpresionOperacion extends Expresion {
     public traducirOperacion(a:Contexto){
         let respuesta;
         const f = new OperacionFactory()
-        switch(a.expresionAdaptada){
-            case "sumar":
-                respuesta = f.factoryMethod("s");
-                break;
-            case "restar":
-                respuesta = f.factoryMethod("r");
-                break;
-            case "multiplicar":
-                respuesta = f.factoryMethod("p");
-                break;
-            case "dividir":
-                respuesta = f.factoryMethod("d");
-                break;
-            default:
-                respuesta = null
-                break;
+        if(a.expresionAdaptada.substring(0,5)=="sumar"){
+            respuesta = f.factoryMethod("s");
+        }
+        else if(a.expresionAdaptada.substring(0,6)=="restar"){
+            respuesta = f.factoryMethod("r");
+        }
+        else if(a.expresionAdaptada.substring(0,11)=="multiplicar"){
+            respuesta = f.factoryMethod("p");
+        }
+        else if(a.expresionAdaptada.substring(0,7)=="dividir"){
+            respuesta = f.factoryMethod("d");
+        }
+        else{
+            respuesta = null;
         }
         return respuesta;
     }

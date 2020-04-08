@@ -6,7 +6,8 @@ export class ExpresionNumerica extends Expresion {
 
     public interpret(a : Contexto){
         let aux = "", aux2 = a;
-        while((aux2.expresionAdaptada!="")&&(aux!="o")){
+        var error = /o/gi; 
+        while((aux2.expresionAdaptada!="")&&(aux.search(error) == -1)){
             aux = aux.concat(this.traducirNumero(aux2))
         }
         if(aux=="o"){
@@ -18,54 +19,52 @@ export class ExpresionNumerica extends Expresion {
         }
     }
 
+
     public traducirNumero(a:Contexto){
-        let respuesta,num;
-        num = a.expresionAdaptada.substring(0, 3)
-        switch(num){
-            case "cer":
-                respuesta = "0";
-                a.expresionAdaptada = a.expresionAdaptada.replace("cero", "");
-                break;
-            case "uno":
-                respuesta = "1";
-                a.expresionAdaptada = a.expresionAdaptada.replace("uno", "");
-                break;
-            case "dos":
-                respuesta = "2";
-                a.expresionAdaptada = a.expresionAdaptada.replace("dos", "");
-                break;
-            case "tre":
-                respuesta = "3";
-                a.expresionAdaptada = a.expresionAdaptada.replace("tres", "");
-                break;
-            case "cua":
-                respuesta = "4";
-                a.expresionAdaptada = a.expresionAdaptada.replace("cuatro", "");
-                break;
-            case "cin":
-                respuesta = "5";
-                a.expresionAdaptada = a.expresionAdaptada.replace("cinco", "");
-                break;
-            case "sei":
-                respuesta = "6";
-                a.expresionAdaptada = a.expresionAdaptada.replace("seis", "");
-                break;
-            case "sie":
-                respuesta = "7";
-                a.expresionAdaptada = a.expresionAdaptada.replace("siete", "");
-                break;
-            case "och":
-                respuesta = "8";
-                a.expresionAdaptada = a.expresionAdaptada.replace("ocho", "");
-                break;
-            case "nue":
-                respuesta = "9";
-                a.expresionAdaptada = a.expresionAdaptada.replace("nueve", "");
-                break;
-            default:
-                respuesta = "o";
-                break;
-                
+        let respuesta
+
+        if(a.expresionAdaptada.substring(0, 4) == "cero"){
+            respuesta = "0";
+            a.expresionAdaptada = a.expresionAdaptada.replace("cero", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 3) == "uno"){
+            respuesta = "1";
+            a.expresionAdaptada = a.expresionAdaptada.replace("uno", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 3) == "dos"){
+            respuesta = "2";
+            a.expresionAdaptada = a.expresionAdaptada.replace("dos", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 4) == "tres"){
+            respuesta = "3";
+            a.expresionAdaptada = a.expresionAdaptada.replace("tres", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 6) == "cuatro"){
+            respuesta = "4";
+            a.expresionAdaptada = a.expresionAdaptada.replace("cuatro", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 5) == "cinco"){
+            respuesta = "5";
+            a.expresionAdaptada = a.expresionAdaptada.replace("cinco", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 4) == "seis"){
+            respuesta = "6";
+            a.expresionAdaptada = a.expresionAdaptada.replace("seis", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 5) == "siete"){
+            respuesta = "7";
+            a.expresionAdaptada = a.expresionAdaptada.replace("siete", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 4) == "ocho"){
+            respuesta = "8";
+            a.expresionAdaptada = a.expresionAdaptada.replace("ocho", "");
+        }
+        else if(a.expresionAdaptada.substring(0, 5) == "nueve"){
+            respuesta = "9";
+            a.expresionAdaptada = a.expresionAdaptada.replace("nueve", "");
+        }
+        else{
+            respuesta = "o";
         }
         return respuesta;
     }

@@ -273,16 +273,9 @@ describe('Operar contexto', function() {
 
   describe('Traducir Contextos', function() {
     it('traducir operacion', function() {
-      let listaExpresiones = [];
-      const f = new ExpresionFactory()
       const r = new Contexto("dividir");
-      listaExpresiones.push(f.factoryMethod("n")) 
-      listaExpresiones.push(f.factoryMethod("o"))
-      let i = 0
-      while(r.valor==null){
-        listaExpresiones[i].interpret(r)
-        i++;
-      }
+      const p = new Parser()
+      p.evaluate(r)
       expect(r.valor instanceof OperacionDivision).equal(true);
     });
   });
@@ -554,6 +547,22 @@ describe('Operar contexto', function() {
 
   describe('Calculadora', function() {
     it('Calculo comandos', function() {
+      let listaContextos = []
+      const c = new Calculadora()
+      const p = new Parser()
+      listaContextos.push(new Contexto("in con uevecuat rodos"))
+      listaContextos.push(new Contexto("ivi di r"))
+      listaContextos.push(new Contexto("tre scuatr o  z cinco seis"))
+      for(let j = 0; j < listaContextos.length; j++){
+        p.evaluate(listaContextos[j])
+        c.procesarNuevoElemento(listaContextos[j])
+      }
+      expect(c.resultado).equal(34);
+    });
+  });
+
+  describe('Calculadora', function() {
+    it('Calculo comandos 2', function() {
       let listaContextos = []
       const c = new Calculadora()
       const p = new Parser()
