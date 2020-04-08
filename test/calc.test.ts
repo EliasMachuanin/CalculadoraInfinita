@@ -613,3 +613,51 @@ describe('Operar contexto', function() {
       expect(c.resultado).equal(10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000);
     });
   });
+
+
+  describe('Prueba Profesor', function() {
+    it('Calculo 1000 digitos con for', function() {
+      let listaContextos = []
+      const c = new Calculadora()
+      const p = new Parser()
+      let a = "", b = "1" ;
+      for(let i = 0 ; i < 1000 ; i++){
+        a = a.concat("nueve")
+      }
+      listaContextos.push(new Contexto(a))
+      listaContextos.push(new Contexto("sumar"))
+      listaContextos.push(new Contexto("uno"))
+      for(let j = 0; j < listaContextos.length; j++){
+        p.evaluate(listaContextos[j])
+        c.procesarNuevoElemento(listaContextos[j])
+      }
+      for(let i = 0 ; i < 1000 ; i++){
+        b = b.concat("0")
+      }
+      expect(c.resultado).equal(parseInt(b));
+    });
+  });
+
+
+  describe('Prueba Profesor', function() {
+    it('Calculo 10000 digitos con for', function() {
+      let listaContextos = []
+      const c = new Calculadora()
+      const p = new Parser()
+      let a = "", b = "1" ;
+      for(let i = 0 ; i < 10000 ; i++){
+        a = a.concat("nueve")
+      }
+      listaContextos.push(new Contexto(a))
+      listaContextos.push(new Contexto("sumar"))
+      listaContextos.push(new Contexto("uno"))
+      for(let j = 0; j < listaContextos.length; j++){
+        p.evaluate(listaContextos[j])
+        c.procesarNuevoElemento(listaContextos[j])
+      }
+      for(let i = 0 ; i < 10000 ; i++){
+        b = b.concat("0")
+      }
+      expect(c.resultado).equal(parseInt(b));
+    });
+  });
